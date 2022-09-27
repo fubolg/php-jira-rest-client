@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: keanor
- * Date: 29.07.15
- * Time: 13:12.
- */
 
 namespace JiraRestApi\Issue;
 
@@ -16,27 +10,27 @@ class IssueSearchResult
     /**
      * @var string
      */
-    public $expand;
+    protected $expand;
 
     /**
      * @var int
      */
-    public $startAt;
+    protected $startAt;
 
     /**
      * @var int
      */
-    public $maxResults;
+    protected $maxResults;
 
     /**
      * @var int
      */
-    public $total;
+    protected $total;
 
     /**
-     * @var \JiraRestApi\Issue\Issue[]
+     * @var Issue[]
      */
-    public $issues;
+    protected $issues;
 
     /**
      * @return int
@@ -100,16 +94,6 @@ class IssueSearchResult
     public function setIssues($issues)
     {
         $this->issues = $issues;
-    }
-
-    /**
-     * @param int $ndx
-     *
-     * @return Issue
-     */
-    public function getIssue($ndx)
-    {
-        return $this->issues[$ndx];
     }
 
     /**

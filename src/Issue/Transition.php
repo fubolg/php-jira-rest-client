@@ -2,30 +2,74 @@
 
 namespace JiraRestApi\Issue;
 
+class TransitionTo
+{
+    /**
+     * @var string
+     */
+    public $self;
+
+    /**
+     * @var string|null
+     */
+    public $description;
+
+    /**
+     * @var string|null
+     */
+    public $iconUrl;
+
+    /**
+     * @var string|null
+     */
+    public $name;
+
+    /**
+     * @var string
+     */
+    public $id;
+
+    /**
+     * @var array
+     */
+    public $statusCategory;
+}
+
 /**
  * Issue Transition mapping class.
  */
 class Transition implements \JsonSerializable
 {
-    /** @var string */
+    /**
+     * @var string
+     */
     public $id;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public $name;
 
-    /** @var \JiraRestApi\Issue\TransitionTo */
+    /**
+     * @var TransitionTo
+     */
     public $to;
 
-    /** @var array */
+    /**
+     * @var array
+     */
     public $fields;
 
-    /** @var \JiraRestApi\Issue\IssueField */
+    /**
+     * @var IssueField
+     */
     public $issueFields;
 
-    /** @var array */
+    /**
+     * @var array
+     */
     public $transition;
 
-    /** @var array */
     public $update;
 
     public function setTransitionName($name)
@@ -35,20 +79,6 @@ class Transition implements \JsonSerializable
         }
 
         $this->transition['name'] = $name;
-    }
-
-    /**
-     * set none translated transition name.
-     *
-     * @param string $untranslatedName
-     */
-    public function setUntranslatedName(string $untranslatedName)
-    {
-        if (is_null($this->transition)) {
-            $this->transition = [];
-        }
-
-        $this->transition['untranslatedName'] = $untranslatedName;
     }
 
     public function setTransitionId($id)
@@ -72,7 +102,6 @@ class Transition implements \JsonSerializable
         array_push($this->update['comment'], $ar);
     }
 
-    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return array_filter(get_object_vars($this));

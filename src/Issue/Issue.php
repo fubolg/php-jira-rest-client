@@ -6,32 +6,34 @@ class Issue implements \JsonSerializable
 {
     /**
      * return only if Project query by key(not id).
+     *
+     * @var string
      */
-    public ?string $expand;
+    public $expand;
 
-    public string $self;
+    /**
+     * @var string
+     */
+    public $self;
 
-    public string $id;
+    /**
+     * @var string
+     */
+    public $id;
 
-    public string $key;
+    /**
+     * @var string
+     */
+    public $key;
 
-    public IssueField $fields;
+    /**
+     * @var IssueField
+     */
+    public $fields;
 
-    public ?array $renderedFields;
+    /** @var string[] */
+    public $names;
 
-    public ?array $names;
-
-    public ?array $schema;
-
-    public ?array $transitions;
-
-    public ?array $operations;
-
-    public ?array $editmeta;
-
-    public ?ChangeLog $changelog;
-
-    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return array_filter(get_object_vars($this));
